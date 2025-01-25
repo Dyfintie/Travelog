@@ -5,51 +5,78 @@ import { useParams, useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { ArrowLeft } from "lucide-react";
 import Image from "next/image";
+import Loading from "../../Loading";
 
 const ViewBlogPage = () => {
   const params = useParams();
   const id = params?.id;
   const router = useRouter();
-  const [topic, setTopic] = useState(null);
+  const [topic, setTopic] = useState();
   const [isLoading, setIsLoading] = useState(false);
+  const [decodedImageUrl, setDecodedImageUrl] = useState(null);
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+
+  const decodeBase64Image = (base64String) => {
+    try {
+      if (!base64String) {
+        console.error("Base64 string is empty or undefined.");
+        return null;
+      }
+
+      // Decode Base64
+      const binaryString = atob(base64String);
+      const binaryLength = binaryString.length;
+
+      // Convert binary string to Uint8Array
+      const bytes = new Uint8Array(binaryLength);
+      for (let i = 0; i < binaryLength; i++) {
+        bytes[i] = binaryString.charCodeAt(i);
+      }
+
+      // Create a Blob and Object URL
+      const blob = new Blob([bytes], { type: "image/png" });
+      return URL.createObjectURL(blob);
+    } catch (error) {
+      console.error("Error decoding Base64 image:", error.message);
+      return null;
+    }
+  };
+
   useEffect(() => {
-    if (!id) return;
     const fetchData = async () => {
       setIsLoading(true);
       try {
         const response = await fetch(`${apiUrl}/blogs/${id}`, {
           method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
         });
 
         if (!response.ok) {
           throw new Error("Failed to fetch topic");
         }
         const result = await response.json();
+        console.log(result);
         setTopic(result);
+        // Decode the image if file exists
+        if (result[0].file) {
+          const decodedUrl = decodeBase64Image(result[0].file);
+          setDecodedImageUrl(decodedUrl);
+        }
+        // setTopic(result);
       } catch (error) {
         console.error("Error fetching topic:", error);
       } finally {
         setIsLoading(false);
       }
     };
+
     fetchData();
-  }, [id]);
+  }, [id, apiUrl]);
 
   if (isLoading) {
-    return (
-      <div className="flex items-center justify-center min-h-screen">
-        <motion.div
-          animate={{ rotate: 360 }}
-          transition={{
-            duration: 1,
-            repeat: Number.POSITIVE_INFINITY,
-            ease: "linear",
-          }}
-          className="w-16 h-16 border-t-4 border-blue-500 border-solid rounded-full"
-        />
-      </div>
-    );
+    return <Loading />;
   }
 
   if (!topic) {
@@ -74,24 +101,23 @@ const ViewBlogPage = () => {
           </div>
 
           <h1 className="text-4xl font-bold text-gray-900 mb-6">
-            {topic.title}
+            {topic[0].title}
           </h1>
-          <h2 className="text-3xl  text-gray-900 mb-6 ">-{topic.author}</h2>
+          <h2 className="text-3xl  text-gray-900 mb-6 ">-{topic[0].author}</h2>
 
-          {topic.file && (
+          {decodedImageUrl && (
             <div className="mb-8">
               <Image
                 width={1500}
                 height={800}
-                src={`http://localhost:8080/${topic.file}`}
-                alt={topic.title}
+                src={decodedImageUrl}
+                alt={topic[0].title}
                 className="w-full h-auto rounded-lg shadow-md"
               />
             </div>
           )}
-
           <div className="text-lg text-gray-800 leading-relaxed">
-            <p>{topic.content}</p>
+            <p>{topic[0].content}</p>
           </div>
         </div>
       </div>

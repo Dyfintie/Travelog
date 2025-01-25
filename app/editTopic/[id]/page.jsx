@@ -3,19 +3,21 @@
 import { useState, useEffect } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { motion } from "framer-motion";
+import Loading from "../../Loading.jsx";
 
 export default function EditTopic() {
   const params = useParams();
   const id = params?.id;
   const router = useRouter();
-
-  const [topic, setTopic] = useState();
+  const [topic, setTopic] = useState(null);
   const [newTitle, setNewTitle] = useState("");
   const [newContent, setNewContent] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+
   useEffect(() => {
     if (!id) return;
+
     const fetchData = async () => {
       setIsLoading(true);
       try {
@@ -27,24 +29,27 @@ export default function EditTopic() {
           throw new Error("Failed to fetch topic");
         }
         const result = await response.json();
-        setTopic(result);
-        setNewTitle(result.title || "");
-        setNewContent(result.content || "");
+        if (result && result[0]) {
+          setTopic(result[0]);
+          setNewTitle(result[0].title || "");
+          setNewContent(result[0].content || "");
+        }
       } catch (error) {
         console.error("Error fetching topic:", error);
       } finally {
         setIsLoading(false);
       }
     };
+
     fetchData();
-  }, [id]);
+  }, [id, apiUrl]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
 
     try {
-      const res = await fetch(`http://localhost:8080/blogs/${id}`, {
+      const res = await fetch(`${apiUrl}/blogs/${id}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -64,11 +69,7 @@ export default function EditTopic() {
   };
 
   if (isLoading) {
-    return (
-      <div className="flex items-center justify-center min-h-screen">
-        <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-gray-900"></div>
-      </div>
-    );
+    return <Loading />;
   }
 
   if (!topic) {
