@@ -8,7 +8,7 @@ export function SignupForm() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
   const router = useRouter();
 
   const handleSubmit = async (e) => {
@@ -18,7 +18,7 @@ export function SignupForm() {
     const userData = { username:name, email:email, password:password };
 
     try {
-      const response = await fetch("http://localhost:8080/signup", {
+      const response = await fetch(`${apiUrl}/signup`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

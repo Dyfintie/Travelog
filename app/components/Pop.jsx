@@ -7,11 +7,12 @@ const Pop = () => {
   const [topics, setTopics] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState("");
-
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+  console.log(apiUrl);
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("http://localhost:8080/blogs", {
+        const response = await fetch(`${apiUrl}/blogs`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",

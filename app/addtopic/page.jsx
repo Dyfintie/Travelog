@@ -11,7 +11,7 @@ export default function AddTopicWithImage() {
   const [preview, setPreview] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
-
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
     setFile(selectedFile);
@@ -42,7 +42,7 @@ export default function AddTopicWithImage() {
     formData.append("file", file);
 
     try {
-      const res = await fetch("http://localhost:8080/create-blog", {
+      const res = await fetch(`${apiUrl}/create-blog`, {
         method: "POST",
         body: formData,
       });

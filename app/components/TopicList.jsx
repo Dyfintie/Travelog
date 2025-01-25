@@ -13,11 +13,12 @@ export default function TopicsList() {
   const [searchTerm, setSearchTerm] = useState("");
   // const [selectedLocation, setSelectedLocation] = useState("");
   const router = useRouter();
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("http://localhost:8080/blogs", {
+        const response = await fetch(`${apiUrl}/blogs`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",

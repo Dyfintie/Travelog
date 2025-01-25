@@ -9,6 +9,7 @@ import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import Cookie from "js-cookie";
 export default function AnimatedTopicCard({ topic }) {
   const [isAuth,setAuth]=useState(false);
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
   useEffect(()=>{
     const func = ()=> {
         const email=Cookie.get("email");
@@ -31,7 +32,7 @@ export default function AnimatedTopicCard({ topic }) {
         <Link href={`/blog/${topic._id}`} className="flex-col ">
           <div className="relative h-48 w-full">
             <Image
-              src={`http://localhost:8080/${topic.file}`}
+              src={`${apiUrl}/${topic.file}`}
               alt={topic.title}
               layout="fill"
               objectFit="cover"

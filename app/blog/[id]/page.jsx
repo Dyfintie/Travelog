@@ -12,13 +12,13 @@ const ViewBlogPage = () => {
   const router = useRouter();
   const [topic, setTopic] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
   useEffect(() => {
     if (!id) return;
     const fetchData = async () => {
       setIsLoading(true);
       try {
-        const response = await fetch(`http://localhost:8080/blogs/${id}`, {
+        const response = await fetch(`${apiUrl}/blogs/${id}`, {
           method: "GET",
         });
 

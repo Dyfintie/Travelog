@@ -8,12 +8,12 @@ export default function EditTopicForm({ id, title, content }) {
   const [newContent, setNewContent] = useState(content);
 
   const router = useRouter();
-
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const res = await fetch(`http://localhost:8080/blogs/${id}`, {
+      const res = await fetch(`${apiUrl}/${id}`, {
         method: "PUT",
         headers: {
           "Content-type": "application/json",

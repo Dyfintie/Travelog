@@ -7,9 +7,9 @@ export default function RemoveBtn({ id }) {
   const router = useRouter();
   const removeTopic = async () => {
     const confirmed = confirm("Are you sure?");
-
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL;
     if (confirmed) {
-      const res = await fetch(`http://localhost:8080/blogs/delete/${id}`, {
+      const res = await fetch(`${apiUrl}/blogs/delete/${id}`, {
         method: "DELETE",
       });
       router.push("/blog")

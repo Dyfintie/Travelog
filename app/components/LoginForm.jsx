@@ -9,7 +9,7 @@ export function LoginForm() {
   const [loading, setLoading] = useState(false);
 
   const router = useRouter();
-
+const apiUrl = process.env.NEXT_PUBLIC_API_URL;
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -17,7 +17,7 @@ export function LoginForm() {
     const loginData = { email, password };
 
     try {
-      const response = await fetch("http://localhost:8080/login", {
+      const response = await fetch(`${apiUrl}/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
