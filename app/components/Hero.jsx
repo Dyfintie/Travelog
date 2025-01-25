@@ -1,9 +1,11 @@
 "use client";
 import React from "react";
 // import {vid} from "../../public/assests/trav.mp4"
-import {motion} from "framer-motion";
+import { motion } from "framer-motion";
+import { useState } from "react";
 import MouseTrackingVideo from "./Mouse";
 const Hero = () => {
+  
   return (
     <div className="bg-gradient-to-r h-screen from-green-100 to-green-200 w-full flex flex-col md:flex-row items-center justify-center p-5 gap-8">
       <motion.div
@@ -30,9 +32,6 @@ const Hero = () => {
           and share stories that inspire your next adventure.
         </p>
       </motion.div>
-
-      {/* <div className="w-full md:w-1/2 mt-8 md:mt-0"> */}
-      {/* <div className="relative rounded-lg overflow-hidden shadow-2xl"> */}
       <MouseTrackingVideo
         src="/assests/trav.mp4"
         className="w-full md:w-1/2 mt-8 md:mt-0 sm:mr-5 relative rounded-lg overflow-hidden shadow-2xl "

@@ -1,24 +1,67 @@
 "use client";
 import { motion } from "framer-motion";
-import {useState,useEffect} from "react"
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import RemoveBtn from "./RemoveBtn";
 import { HiPencilAlt } from "react-icons/hi";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import Cookie from "js-cookie";
+
 export default function AnimatedTopicCard({ topic }) {
-  const [isAuth,setAuth]=useState(false);
-  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
-  useEffect(()=>{
-    const func = ()=> {
-        const email=Cookie.get("email");
-        if(email==topic.email){
-          setAuth(true);
-        }
+  const [isAuth, setAuth] = useState(false);
+  const [decodedImageUrl, setDecodedImageUrl] = useState(null);
+
+  // Function to decode Base64 image
+  const decodeBase64Image = (base64String) => {
+    try {
+      // Check if the string exists
+      if (!base64String) {
+        console.error("Base64 string is empty or undefined.");
+        return null;
+      }
+
+      // // Remove the data URL prefix if present
+      const base64Content = base64String.includes(",")
+        ? base64String.split(",")[1]
+        : base64String;
+
+      // Decode Base64
+      const binaryString = atob(base64Content);
+      const binaryLength = binaryString.length;
+
+      // Convert to Uint8Array
+      const bytes = new Uint8Array(binaryLength);
+      for (let i = 0; i < binaryLength; i++) {
+        bytes[i] = binaryString.charCodeAt(i);
+      }
+
+      // Create a Blob and Object URL
+      const blob = new Blob([bytes], { type: "image/png" });
+      return URL.createObjectURL(blob);
+    } catch (error) {
+      console.error("Error decoding Base64 image:", error.message);
+      return null;
     }
-    func();
-  },[])
+  };
+
+
+  // Decode image when component mounts or when topic.file changes
+  useEffect(() => {
+    if (topic.file) {
+      const decodedUrl = decodeBase64Image(topic.file);
+      setDecodedImageUrl(decodedUrl);
+    }
+  }, [topic.file]);
+
+  // Check authentication
+  useEffect(() => {
+    const email = Cookie.get("email");
+    if (email === topic.email) {
+      setAuth(true);
+    }
+  }, [topic.email]);
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -31,12 +74,14 @@ export default function AnimatedTopicCard({ topic }) {
       <div className="h-screen2">
         <Link href={`/blog/${topic._id}`} className="flex-col ">
           <div className="relative h-48 w-full">
-            <Image
-              src={`${apiUrl}/${topic.file}`}
-              alt={topic.title}
-              layout="fill"
-              objectFit="cover"
-            />
+            {decodedImageUrl && (
+              <Image
+                src={decodedImageUrl}
+                alt={topic.title}
+                layout="fill"
+                objectFit="cover"
+              />
+            )}
           </div>
           <div className="h-full flex-col p-6 ">
             <h2 className="text-xl font-semibold text-gray-900 mb-2">

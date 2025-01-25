@@ -61,7 +61,7 @@ const Loading = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.2 }}
-        className="mt-4 text-2xl font-semibold text-indigo-700"
+        className="mt-4 text-2xl font-semibold text-orange-800"
       >
         Exploring new horizons...
       </motion.h2>

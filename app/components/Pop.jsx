@@ -2,13 +2,16 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import AnimatedTopicCard from "./AnimatedTopicCard";
-import ErrorPage from "../404"
+import ErrorPage from "../404";
+import Loading from "../Loading";
+
 const Pop = () => {
   const [topics, setTopics] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState("");
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
-  console.log(apiUrl);
+  // console.log(apiUrl);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -18,7 +21,7 @@ const Pop = () => {
             "Content-Type": "application/json",
           },
         });
-
+        
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
@@ -40,11 +43,11 @@ const Pop = () => {
   const firstThreeTopics = topics.slice(0, 3);
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <Loading />;
   }
 
   if (error) {
-    return <ErrorPage/>;
+    return <ErrorPage />;
   }
 
   return (

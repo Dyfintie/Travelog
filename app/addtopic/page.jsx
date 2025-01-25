@@ -145,6 +145,7 @@ export default function AddTopicWithImage() {
                 whileTap={{ scale: 0.95 }}
                 className="bg-gray-900 text-white font-bold py-3 px-6 rounded-md hover:bg-gray-800 transition duration-300 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-opacity-50"
                 type="submit"
+                onClick={handleSubmit}
                 disabled={isLoading}
               >
                 {isLoading ? "Adding..." : "Publish Travelog"}
