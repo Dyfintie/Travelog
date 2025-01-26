@@ -11,7 +11,7 @@ const Pop = () => {
   const [error, setError] = useState("");
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
   // console.log(apiUrl);
-
+  const [onHome,setOnhome]=useState(true);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -54,12 +54,12 @@ const Pop = () => {
     // export default function PopularPlaces({ firstThreeTopics }) {
     //   return (
     <div className="py-12 bg-gradient-to-b from-green-100 to-green-200">
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="max-w-7xl mx-auto px-6 h-screen2">
         <h2 className="text-3xl font-bold  text-orange-800 mb-6 text-center">
           Most Popular Places
         </h2>
 
-        <div className="flex flex-wrap gap-6 justify-center">
+        <div className="flex flex-wrap gap-6 justify-center h-screen2">
           <AnimatePresence>
             {firstThreeTopics.map((topic, index) => (
               <motion.div
@@ -70,7 +70,7 @@ const Pop = () => {
                 transition={{ duration: 0.5, delay: index * 0.3 }}
                 className="max-w-sm w-full justify-between gap-3 lg:w-1/3 xl:w-1/4"
               >
-                <AnimatedTopicCard key={topic._id} topic={topic} />
+                <AnimatedTopicCard key={topic._id} topic={topic} onHome={onHome} />
               </motion.div>
             ))}
           </AnimatePresence>

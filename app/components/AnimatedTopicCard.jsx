@@ -8,7 +8,7 @@ import { HiPencilAlt } from "react-icons/hi";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import Cookie from "js-cookie";
 
-export default function AnimatedTopicCard({ topic }) {
+export default function AnimatedTopicCard({ topic,onHome }) {
   const [isAuth, setAuth] = useState(false);
   const [decodedImageUrl, setDecodedImageUrl] = useState(null);
 
@@ -84,7 +84,7 @@ export default function AnimatedTopicCard({ topic }) {
           </div>
           <div className="h-full flex-col p-6 ">
             <h2 className="text-xl font-semibold text-gray-900 mb-2">
-              {topic.title}
+              {topic.title.substring(0,30)}...
             </h2>
             <h3 className="text-lg text-gray-700 mb-2">{topic.author}</h3>
             <p className="text-gray-600 mb-4">
@@ -96,7 +96,7 @@ export default function AnimatedTopicCard({ topic }) {
                 {topic.date_created}
               </span>
             </div>
-            {isAuth ? (
+            {isAuth && !onHome ? (
               <div className="flex self-end mb-auto px-7 justify-end gap-4 ">
                 <RemoveBtn id={topic._id} className="items-end" />
                 <Link href={`/editTopic/${topic._id}`}>
