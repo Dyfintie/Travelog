@@ -54,12 +54,12 @@ const Pop = () => {
     // export default function PopularPlaces({ firstThreeTopics }) {
     //   return (
     <div className="py-12 bg-gradient-to-b from-green-100 to-green-200">
-      <div className="max-w-7xl mx-auto px-6 h-screen2">
+      <div className="max-w-7xl mx-auto px-6">
         <h2 className="text-3xl font-bold  text-orange-800 mb-6 text-center">
           Most Popular Places
         </h2>
 
-        <div className="flex flex-wrap gap-6 justify-center h-screen2">
+        <div className="flex flex-wrap gap-6 justify-center">
           <AnimatePresence>
             {firstThreeTopics.map((topic, index) => (
               <motion.div
