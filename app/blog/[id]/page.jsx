@@ -7,7 +7,7 @@ import { ArrowLeft } from "lucide-react";
 import Image from "next/image";
 import parse from 'html-react-parser';
 import Loading from "../../Loading";
-
+import Scrollprog from "../../components/Scrollprog"
 const ViewBlogPage = () => {
   const params = useParams();
   const id = params?.id;
@@ -83,46 +83,51 @@ const ViewBlogPage = () => {
   if (!topic) {
     return (
       <div className="flex items-center justify-center min-h-screen">
-        <p className="text-2xl text-gray-600">Topic not found</p>
+        <p className="text-2xl text-orange-600">Topic not found</p>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12">
-      <div className="max-w-6xl mx-auto w-full bg-white rounded-lg shadow-lg overflow-hidden">
-        <div className="p-8">
-          <div className="flex items-center mb-8">
-            <button
-              onClick={() => router.push("/blog")}
-              className="flex items-center text-gray-600 hover:text-gray-800 transition-colors duration-200"
-            >
-              <ArrowLeft className="mr-1" /> Back to Blog
-            </button>
-          </div>
-
-          <h1 className="text-4xl font-bold text-gray-900 mb-6">
-            {topic[0].title}
-          </h1>
-          <h2 className="text-3xl  text-gray-900 mb-6 ">-{topic[0].author}</h2>
-
-          {decodedImageUrl && (
-            <div className="mb-8">
-              <Image
-                width={1500}
-                height={800}
-                src={decodedImageUrl}
-                alt={topic[0].title}
-                className="w-full h-auto rounded-lg shadow-md"
-              />
+    <>
+      <Scrollprog />
+      <div className="min-h-screen bg-gradient-to-b from-green-100 to-green-300 py-12">
+        <div className="max-w-full mx-auto w-full bg-white rounded-lg shadow-lg overflow-hidden">
+          <div className="p-8">
+            <div className="flex items-center mb-8">
+              <button
+                onClick={() => router.push("/blog")}
+                className="flex items-center text-orange-700 ml-2 hover:text-orange-800 transition-colors duration-200"
+              >
+                <ArrowLeft className="mr-1 " /> Back to Blog
+              </button>
             </div>
-          )}
-          <div className="text-lg text-gray-800 leading-relaxed">
-            <p>{parse(topic[0].content)}</p>
+
+            <h1 className="text-4xl ml-10 font-bold text-orange-900 mb-6">
+              {topic[0].title}
+            </h1>
+            <h2 className="text-3xl ml-10  text-orange-900 mb-6 ">
+              -{topic[0].author}
+            </h2>
+
+            {decodedImageUrl && (
+              <div className="mb-8 flex justify-center">
+                <Image
+                  width={1500}
+                  height={800}
+                  src={decodedImageUrl}
+                  alt={topic[0].title}
+                  className="w-full2 h-auto rounded-lg shadow-md"
+                />
+              </div>
+            )}
+            <div className=" text-lg text-orange-800 leading-relaxed">
+              <motion.p className="px-5">{parse(topic[0].content)}</motion.p>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

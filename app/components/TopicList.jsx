@@ -64,7 +64,7 @@ export default function TopicsList() {
 
   if (error) {
     return (
-      <div className="text-center text-red-600 mt-10 bg-green-100 min-h-screen py-8">
+      <div className="text-center text-red-600 mt-10 bg-gradient-to-t from-green-100 to-green-300 min-h-screen py-8">
         <h2 className="text-2xl font-bold mb-2">Error</h2>
         <p>{error}</p>
       </div>
@@ -77,7 +77,7 @@ export default function TopicsList() {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
       // whileHover={{ scale: 1.3 }}
-      className="mx-auto px-4 py-8 bg-green-100 min-h-screen w-full"
+      className="mx-auto px-4 py-8 bg-gradient-to-br from-green-100 to-green-300 min-h-screen w-full"
     >
       <div className="mb-8 flex flex-col md:flex-row gap-4">
         <div className="relative flex-grow">

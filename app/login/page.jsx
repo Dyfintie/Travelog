@@ -10,7 +10,7 @@ export default function AuthPage() {
   const [isLogin, setIsLogin] = useState(false);
 
   return (
-    <div className="min-h-screen bg-green-200 flex flex-col sm:flex-row items-center sm:items-stretch justify-center sm:justify-between">
+    <div className="font-work-sans min-h-screen bg-green-200 flex flex-col sm:flex-row items-center sm:items-stretch justify-center sm:justify-between">
       <div className="sm:flex flex-col justify-center items-center px-5 py-8 sm:w-1/2 w-full bg-green-200 max-w-full">
         <h2 className="text-2xl sm:text-3xl text-orange-800 font-bold text-center mb-6">
           {isLogin ? "Welcome Back!" : "Create Account"}

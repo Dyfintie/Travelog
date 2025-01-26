@@ -1,11 +1,24 @@
 "use client";
 import React, { useState, useEffect, useRef } from "react";
-
-export default function MouseTrackingVideo({ src, className = "" }) {
+import { motion } from "framer-motion";
+export default function MouseTrackingvideo({ src, className = "" }) {
   const [rotation, setRotation] = useState({ x: 0, y: 0 });
   const videoRef = useRef(null);
+  const [islarge, setLarge] = useState(false);
+  useEffect(()=>{
+    const handleResize = () => {
+      setLarge(window.innerWidth > 768);
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  })
 
   useEffect(() => {
+    
     const handleMouseMove = (e) => {
       if (!videoRef.current) return;
 
@@ -41,7 +54,10 @@ export default function MouseTrackingVideo({ src, className = "" }) {
   }, []);
 
   return (
-    <div
+    <motion.div
+      initial={{ opacity: 1, x: islarge? -400:0 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 1, delay: 4, ease: [0, 0.71, 0.2, 1.01] }}
       ref={videoRef}
       className={`relative ${className}`}
       style={{
@@ -60,6 +76,6 @@ export default function MouseTrackingVideo({ src, className = "" }) {
         <source src={src} type="video/mp4" />
         Your browser does not support the video tag.
       </video>
-    </div>
+    </motion.div>
   );
 }

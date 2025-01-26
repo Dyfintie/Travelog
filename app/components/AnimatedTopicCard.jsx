@@ -69,7 +69,7 @@ export default function AnimatedTopicCard({ topic,onHome }) {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
       whileHover={{ scale: 1.05 }}
-      className="bg-green-100 rounded-lg shadow-md overflow-hidden"
+      className="bg-gradient-to-tr from-green-100 to-green-300 rounded-lg shadow-md overflow-hidden font-work-sans"
     >
       <div className="h-screen2">
         <Link href={`/blog/${topic._id}`} className="flex-col ">
@@ -84,14 +84,14 @@ export default function AnimatedTopicCard({ topic,onHome }) {
             )}
           </div>
           <div className="h-full flex-col p-6 ">
-            <h2 className="text-xl font-semibold text-gray-900 mb-2">
+            <h2 className="text-xl font-semibold text-orange-800 mb-2">
               {topic.title.substring(0,30)}...
             </h2>
-            <h3 className="text-lg text-gray-700 mb-2">{topic.author}</h3>
-            <p className="text-gray-600 mb-4">
+            <h3 className="text-lg text-orange-700 mb-2">{topic.author}</h3>
+            <p className="text-orange-600 mb-4">
               {parse(topic.content.substring(0, 100))}...
             </p>
-            <div className="flex items-center text-sm text-gray-500">
+            <div className="flex items-center text-sm text-orange-500">
               <span>
                 <AccessTimeIcon />
                 {topic.date_created}

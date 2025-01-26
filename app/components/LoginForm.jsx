@@ -9,7 +9,7 @@ export function LoginForm() {
   const [loading, setLoading] = useState(false);
 
   const router = useRouter();
-const apiUrl=process.env.NEXT_PUBLIC_API_URL;
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -41,10 +41,10 @@ const apiUrl=process.env.NEXT_PUBLIC_API_URL;
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
+    <form onSubmit={handleSubmit} className="space-y-4 font-work-sans">
       {error && <div className="text-red-500">{error}</div>}
 
-      <div>
+      <div className="font-work-sans">
         <input
           type="email"
           placeholder="Email"

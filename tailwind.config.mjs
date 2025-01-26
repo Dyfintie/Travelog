@@ -7,6 +7,9 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        "work-sans": ["var(--font-work-sans)"],
+      },
       height: {
         screen2: "70vh",
       },
@@ -16,9 +19,6 @@ export default {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
-      },
-      fontFamily: {
-        sans: ["Roboto", "sans-serif"], // Add your custom font here
       },
       keyframes: {
         fadeIn: {
@@ -31,5 +31,5 @@ export default {
       },
     },
   },
-  plugins: [],
+  plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography")],
 };
