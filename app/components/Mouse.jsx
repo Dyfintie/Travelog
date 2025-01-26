@@ -55,9 +55,9 @@ export default function MouseTrackingvideo({ src, className = "" }) {
 
   return (
     <motion.div
-      initial={{ opacity: 1, x: islarge? -400:0 }}
-      animate={{ opacity: 1, x: 0 }}
-      transition={{ duration: 1, delay: 4, ease: [0, 0.71, 0.2, 1.01] }}
+      initial={{ opacity: 1, y: -100 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 1, delay: 5, ease: [0, 0.71, 0.2, 1.01] }}
       ref={videoRef}
       className={`relative ${className}`}
       style={{
