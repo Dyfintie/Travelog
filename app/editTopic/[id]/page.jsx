@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { motion } from "framer-motion";
+import Editor from 'react-simple-wysiwyg';
 import Loading from "../../Loading.jsx";
 
 export default function EditTopic() {
@@ -46,6 +47,7 @@ export default function EditTopic() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log(newContent);
     setIsLoading(true);
 
     try {
@@ -56,7 +58,6 @@ export default function EditTopic() {
         },
         body: JSON.stringify({ title: newTitle, content: newContent }),
       });
-
       if (!res.ok) {
         throw new Error("Failed to update topic");
       }
@@ -120,14 +121,17 @@ export default function EditTopic() {
               >
                 Content
               </label>
-              <textarea
+              {
+                <Editor value={newContent} onChange={(e) => setNewContent(e.target.value)} />
+              }
+              {/* <textarea
                 id="content"
                 onChange={(e) => setNewContent(e.target.value)}
                 value={newContent}
                 className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-900 transition duration-200 h-96 resize-none text-lg"
                 placeholder="Enter topic content"
                 required
-              />
+              /> */}
             </div>
 
             <div className="flex justify-end">

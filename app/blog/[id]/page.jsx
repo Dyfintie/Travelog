@@ -5,6 +5,7 @@ import { useParams, useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { ArrowLeft } from "lucide-react";
 import Image from "next/image";
+import parse from 'html-react-parser';
 import Loading from "../../Loading";
 
 const ViewBlogPage = () => {
@@ -117,7 +118,7 @@ const ViewBlogPage = () => {
             </div>
           )}
           <div className="text-lg text-gray-800 leading-relaxed">
-            <p>{topic[0].content}</p>
+            <p>{parse(topic[0].content)}</p>
           </div>
         </div>
       </div>
