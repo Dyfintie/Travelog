@@ -6,6 +6,7 @@ import Link from "next/link";
 import RemoveBtn from "./RemoveBtn";
 import { HiPencilAlt } from "react-icons/hi";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
+import parse from 'html-react-parser';
 import Cookie from "js-cookie";
 
 export default function AnimatedTopicCard({ topic,onHome }) {
@@ -88,7 +89,7 @@ export default function AnimatedTopicCard({ topic,onHome }) {
             </h2>
             <h3 className="text-lg text-gray-700 mb-2">{topic.author}</h3>
             <p className="text-gray-600 mb-4">
-              {topic.content.substring(0, 100)}...
+              {parse(topic.content.substring(0, 100))}...
             </p>
             <div className="flex items-center text-sm text-gray-500">
               <span>
