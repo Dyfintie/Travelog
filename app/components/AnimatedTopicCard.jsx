@@ -68,7 +68,6 @@ export default function AnimatedTopicCard({ topic }) {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
       whileHover={{ scale: 1.05 }}
-      whileTap={{ scale: 0.95 }}
       className="bg-green-100 rounded-lg shadow-md overflow-hidden"
     >
       <div className="h-screen2">
