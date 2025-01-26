@@ -210,7 +210,7 @@ const Navbar = () => {
                     onClick={() => {
                       router.push("/login");
                     }}
-                    className="flex max-w-fit items-center space-x-1 w-full px-3 py-2 rounded-md text-base font-medium text-white bg-green-500 hover:bg-green-600 transition duration-300 ease-in-out"
+                    className="max-w-fit items-center space-x-1 w-full px-3 py-2 rounded-md text-base font-medium text-white bg-green-500 hover:bg-green-600 transition duration-300 ease-in-out"
                   >
                     <LogIn className="h-5 w-5" />
                     <span>Login</span>
