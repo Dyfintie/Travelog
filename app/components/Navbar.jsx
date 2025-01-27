@@ -65,17 +65,17 @@ const Navbar = () => {
       animate={hidden ? { y: -100 } : { y: 0 }}
       exit={{ y: -100 }}
       transition={{ duration: 0.7, ease: "easeInOut" }}
-      className="font-work-sans fixed top-0 left-0 right-0 z-50 bg-opacity-90 backdrop-blur-md shadow-lg bg-gradient-to-r from-green-100 to-green-800"
+      className="font-work-sans fixed top-0 left-0 right-0 z-50 bg-opacity-10  shadow-md bg-custom"
     >
-      <div className="max-w-full mx-auto px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-green-100 to-green-300">
+      <div className="max-w-full mx-auto px-4 sm:px-6 lg:px-8 bg-custom">
         <div className="flex justify-between items-center py-4 md:space-x-10">
           <div className="flex justify-start lg:w-0 lg:flex-1">
             <Link href="/" className="flex items-center space-x-2">
-              {/* <Compass className="h-8 w-8 text-green-600" /> */}
+              {/* <Compass className="h-8 w-8 text-black" /> */}
               <Image src={plane} height={24} widht={24} alt="Travelog logo" />
-              <span className="text-2xl font-extrabold text-green-800 ">
+              <span className="text-2xl font-extrabold text-black ">
                 Trave{" "}
-                <span className="text-2xl font-extrabold text-orange-800 ">
+                <span className="text-2xl font-extrabold text-black-800 ">
                   Loog
                 </span>
               </span>
@@ -85,7 +85,7 @@ const Navbar = () => {
             <motion.button
               whileTap={{ rotate: 180 }}
               type="button"
-              className="bg-green-100 rounded-md p-2 inline-flex items-center justify-center text-green-600 hover:text-green-700 hover:bg-green-200 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-green-500"
+              className="bg-custom rounded-md p-2 inline-flex items-center justify-center text-black hover:text-black hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-black"
               onClick={toggleNavbar}
             >
               <span className="sr-only">Open menu</span>
@@ -101,14 +101,14 @@ const Navbar = () => {
               // <Link
               //   key={item.href}
               //   href={item.href}
-              //   className=" py-1 px-1 font-semibold text-xl pt-1.5 text-green-600 hover:text-green-800 transition duration-300 ease-in-out"
+              //   className=" py-1 px-1 font-semibold text-xl pt-1.5 text-black hover:text-black transition duration-300 ease-in-out"
               // >
               <motion.button
                 key={item.label}
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
                 transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                className="px-3 py-1 rounded-xl hover:bg-green-400 text-green-800 flex justify-center items-center"
+                className="px-3 py-1 rounded-xl hover:bg-gray-300 text-black flex justify-center items-center"
                 onClick={() => {
                   router.push(`${item.href}`);
                 }}
@@ -125,7 +125,7 @@ const Navbar = () => {
                 onClick={() => {
                   router.push("/addtopic");
                 }}
-                className="px-2 py-1 rounded-xl hover:bg-green-400  text-orange-700  "
+                className="px-2 py-1 rounded-xl hover:bg-gray-300  text-black-700  "
               >
                 <CreateOutlinedIcon />
                 Write
@@ -137,7 +137,7 @@ const Navbar = () => {
                 whileTap={{ scale: 0.9 }}
                 transition={{ type: "spring", stiffness: 400, damping: 10 }}
                 onClick={handleLogout}
-                className="flex items-center space-x-1 rounded-md px-3 py-2 bg-green-500 text-white hover:bg-green-600 transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
+                className="flex items-center space-x-1 rounded-md px-3 py-2 bg-black text-white hover:bg-gray-300 transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2"
               >
                 <LogOut className="h-5 w-5" />
                 <span>Logout</span>
@@ -150,7 +150,7 @@ const Navbar = () => {
                 onClick={() => {
                   router.push("/login");
                 }}
-                className="flex space-x-1 rounded-md px-3 py-2 bg-green-500 text-white "
+                className="flex space-x-1 rounded-md px-3 py-2 bg-black text-custom "
               >
                 <LogIn className="h-5 w-5" />
                 <span>Login</span>
@@ -167,14 +167,14 @@ const Navbar = () => {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className="absolute top-full left-0 w-full bg-green-100 shadow-lg md:hidden"
+            className="absolute top-full left-0 w-full bg-custom shadow-lg md:hidden"
           >
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
               {navItems.map((item) => (
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="block px-3 py-2 rounded-md text-base font-medium text-green-600 hover:text-green-800 hover:bg-green-200 transition duration-300 ease-in-out"
+                  className="block px-3 py-2 rounded-md text-base font-medium text-black hover:bg-gray-300 transition duration-300 ease-in-out"
                   onClick={toggleNavbar}
                 >
                   <motion.span
@@ -191,7 +191,7 @@ const Navbar = () => {
                     onClick={() => {
                       router.push("/addtopic");
                     }}
-                    className="flex font-semibold  items-center gap-1 space-x-1 rounded-md px-3 py-2  text-orange-700 hover:bg-green-300 transition duration-300 ea  -in-out focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
+                    className="flex font-semibold  items-center gap-1 space-x-1 rounded-md px-3 py-2  text-black-700 hover:bg-gray-300 transition duration-300 ea  -in-out focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2"
                   >
                     <CreateOutlinedIcon />
                     Write
@@ -200,7 +200,7 @@ const Navbar = () => {
                 {isAuth ? (
                   <button
                     onClick={handleLogout}
-                    className="flex items-center space-x-1 w-1/11 px-3 py-2 rounded-md text-base font-medium text-white bg-green-500 hover:bg-green-600 transition duration-300 ease-in-out"
+                    className="flex items-center space-x-1 w-1/11 px-3 py-2 rounded-md text-base font-medium text-white bg-black hover:bg-gray-300 transition duration-300 ease-in-out"
                   >
                     <LogOut className="h-5 w-5" />
                     <span>Logout</span>
@@ -210,7 +210,7 @@ const Navbar = () => {
                     onClick={() => {
                       router.push("/login");
                     }}
-                    className="flex max-w-fit items-center space-x-1 w-full px-3 py-2 rounded-md text-base font-medium text-white bg-green-500 hover:bg-green-600 transition duration-300 ease-in-out"
+                    className="flex max-w-fit items-center space-x-1 w-full px-3 py-2 rounded-md text-base font-medium text-white bg-black hover:bg-gray-300 transition duration-300 ease-in-out"
                   >
                     <LogIn className="h-5 w-5" />
                     <span>Login</span>

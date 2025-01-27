@@ -51,7 +51,7 @@ export function LoginForm() {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
-          className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
+          className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-black"
         />
       </div>
       <div>
@@ -61,13 +61,13 @@ export function LoginForm() {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
-          className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
+          className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-black"
         />
       </div>
       <button
         type="submit"
         disabled={loading}
-        className="w-full bg-gradient-to-r from-green-400 to-green-600 text-white py-2 rounded-md hover:opacity-90 transition duration-300"
+        className="w-full bg-black text-white py-2 rounded-md hover:opacity-90 transition duration-300"
       >
         {loading ? "Logging In..." : "Log In"}
       </button>

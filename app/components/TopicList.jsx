@@ -64,7 +64,7 @@ export default function TopicsList() {
 
   if (error) {
     return (
-      <div className="text-center text-red-600 mt-10 bg-gradient-to-t from-green-100 to-green-300 min-h-screen py-8">
+      <div className="text-center text-red-600 mt-10 bg-custom min-h-screen py-8">
         <h2 className="text-2xl font-bold mb-2">Error</h2>
         <p>{error}</p>
       </div>
@@ -77,7 +77,7 @@ export default function TopicsList() {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
       // whileHover={{ scale: 1.3 }}
-      className="mx-auto px-4 py-8 bg-gradient-to-br from-green-100 to-green-300 min-h-screen w-full"
+      className="mx-auto px-4 py-8 bg-custom min-h-screen w-full"
     >
       <div className="mb-8 flex flex-col md:flex-row gap-4">
         <div className="relative flex-grow">
@@ -86,7 +86,7 @@ export default function TopicsList() {
             placeholder="Search destinations..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full hover:ring-green-200 hover:ring-4 p-3 pl-10 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500"
+            className="w-full hover:ring-black hover:ring-1 p-3 pl-10 rounded-md border border-gray-300 focus:outline-none focus:ring-1 focus:ring-black"
           />
           <Search className=" absolute left-3 top-3 text-gray-400" size={20} />
         </div>

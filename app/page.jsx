@@ -10,13 +10,13 @@ export default function Home() {
     <>
       {/* <Scrollprog/> */}
       <Navbar />
-      <section id="home" className="min-h-screen w-full bg-green-200 mt-5">
+      <section id="home" className="min-h-screen w-full bg-custom mt-5">
         <Hero />
       </section>
-      {/* <section id="home" className="min-h-screen w-full bg-green-200 "> */}
+      {/* <section id="home" className="min-h-screen w-full bg-custom "> */}
         <Pop />
       {/* </section> */}
-      <section id="home" className="min-h-screen w-full bg-green-200 ">
+      <section id="home" className="min-h-screen w-full bg-custom ">
         <Map />
       </section>
       <Footer />

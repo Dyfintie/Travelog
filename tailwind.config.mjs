@@ -9,6 +9,26 @@ export default {
     extend: {
       fontFamily: {
         "work-sans": ["var(--font-work-sans)"],
+        sans: [
+          "-apple-system",
+          "BlinkMacSystemFont",
+          '"Segoe UI"',
+          "Roboto",
+          "Oxygen",
+          "Ubuntu",
+          "Cantarell",
+          '"Open Sans"',
+          '"Helvetica Neue"',
+          "sans-serif",
+        ], // Modern system font stack
+        serif: [
+          "Charter",
+          "Georgia",
+          "Cambria",
+          '"Times New Roman"',
+          "Times",
+          "serif",
+        ],
       },
       height: {
         screen2: "70vh",
@@ -19,6 +39,7 @@ export default {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        custom: "#f1f0ea",
       },
       keyframes: {
         fadeIn: {

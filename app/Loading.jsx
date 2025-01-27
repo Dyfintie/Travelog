@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 const Loading = () => {
   return (
-    <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-green-100">
+    <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-gray-100">
       <motion.svg
         width={120}
         height={120}
@@ -17,20 +17,20 @@ const Loading = () => {
           repeat: Number.POSITIVE_INFINITY,
         }}
       >
-        
+        {/* Outer Circle */}
         <circle
           cx="50"
           cy="50"
           r="45"
           fill="none"
-          stroke="#90EE90"
+          stroke="#d1d5db" /* Light gray */
           strokeWidth="2"
         />
 
-        
-        <circle cx="50" cy="50" r="5" fill="#90EE90" />
+        {/* Center Dot */}
+        <circle cx="50" cy="50" r="5" fill="#6b7280" /* Medium gray */ />
 
-        
+        {/* Rotating Pointer */}
         <motion.g
           animate={{ rotate: [0, 360] }}
           transition={{
@@ -40,28 +40,33 @@ const Loading = () => {
             repeatType: "reverse",
           }}
         >
-          <path d="M50 10 L55 50 L50 90 L45 50 Z" fill="#90EE90" />
+          <path
+            d="M50 10 L55 50 L50 90 L45 50 Z"
+            fill="#6b7280" /* Medium gray */
+          />
         </motion.g>
 
-        
-        <text x="50" y="20" textAnchor="middle" fill="#90EE90" fontSize="12">
+        {/* Cardinal Directions */}
+        <text x="50" y="20" textAnchor="middle" fill="#6b7280" fontSize="12">
           N
         </text>
-        <text x="80" y="53" textAnchor="middle" fill="#90EE90" fontSize="12">
+        <text x="80" y="53" textAnchor="middle" fill="#6b7280" fontSize="12">
           E
         </text>
-        <text x="50" y="85" textAnchor="middle" fill="#90EE90" fontSize="12">
+        <text x="50" y="85" textAnchor="middle" fill="#6b7280" fontSize="12">
           S
         </text>
-        <text x="20" y="53" textAnchor="middle" fill="#90EE90" fontSize="12">
+        <text x="20" y="53" textAnchor="middle" fill="#6b7280" fontSize="12">
           W
         </text>
       </motion.svg>
+
+      {/* Loading Message */}
       <motion.h2
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.2 }}
-        className="mt-4 text-2xl font-work-sans font-semibold text-orange-800"
+        className="mt-4 text-2xl font-sans font-medium text-gray-800"
       >
         Exploring new horizons...
       </motion.h2>

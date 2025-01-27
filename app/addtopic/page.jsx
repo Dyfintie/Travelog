@@ -63,8 +63,8 @@ export default function AddTopicWithImage() {
   };
 
   return (
-    <div className="min-h-screen bg-white">
-      <header className="bg-white border-b border-gray-200">
+    <div className="min-h-screen bg-custom">
+      <header className="bg-custom border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <h1 className="text-3xl font-bold text-gray-900">
             Tell your Travelog!
@@ -76,7 +76,7 @@ export default function AddTopicWithImage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="bg-white"
+          className="bg-custom"
         >
           <form onSubmit={handleSubmit} className="space-y-8">
             <div>
@@ -138,7 +138,7 @@ export default function AddTopicWithImage() {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="bg-gray-900 text-white font-bold py-3 px-6 rounded-md hover:bg-gray-800 transition duration-300 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-opacity-50"
+                className="bg-gray-900 text-custom font-bold py-3 px-6 rounded-md hover:bg-gray-800 transition duration-300 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-opacity-50"
                 type="submit"
                 onClick={handleSubmit}
                 disabled={isLoading}

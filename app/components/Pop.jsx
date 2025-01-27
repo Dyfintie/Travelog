@@ -53,9 +53,9 @@ const Pop = () => {
   return (
     // export default function PopularPlaces({ firstThreeTopics }) {
     //   return (
-    <div className=" font-work-sans py-12 bg-gradient-to-b from-green-100 to-green-300">
+    <div className=" font-work-sans py-12 bg-custom ">
       <div className="max-w-7xl mx-auto px-6">
-        <h2 className="text-3xl font-bold  text-orange-800 mb-6 text-center">
+        <h2 className="text-3xl font-bold  text-black mb-6 text-center">
           Most Popular Places
         </h2>
 

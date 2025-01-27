@@ -25,7 +25,7 @@ const BlogPage = () => {
   return (
     <>
       <Navbar />
-      <div className="pt-16 bg-gradient-to-r from-green-100 to-green-300">
+      <div className="pt-16 bg-custom">
         <TopicList />
       </div>
     </>

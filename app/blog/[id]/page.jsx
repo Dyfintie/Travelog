@@ -83,7 +83,7 @@ const ViewBlogPage = () => {
   if (!topic) {
     return (
       <div className="flex items-center justify-center min-h-screen">
-        <p className="text-2xl text-orange-600">Topic not found</p>
+        <p className="text-2xl text-black">Topic not found</p>
       </div>
     );
   }
@@ -91,22 +91,22 @@ const ViewBlogPage = () => {
   return (
     <>
       <Scrollprog />
-      <div className="min-h-screen bg-gradient-to-b from-green-100 to-green-300 py-12">
+      <div className="min-h-screen bg-custom py-12">
         <div className="max-w-full mx-auto w-full bg-white rounded-lg shadow-lg overflow-hidden">
           <div className="p-8">
             <div className="flex items-center mb-8">
               <button
                 onClick={() => router.push("/blog")}
-                className="flex items-center text-orange-700 ml-2 hover:text-orange-800 transition-colors duration-200"
+                className="flex items-center text-black ml-2 hover:text-black transition-colors duration-200"
               >
                 <ArrowLeft className="mr-1 " /> Back to Blog
               </button>
             </div>
 
-            <h1 className="text-4xl ml-10 font-bold text-orange-900 mb-6">
+            <h1 className="text-4xl ml-10 font-bold text-black mb-6">
               {topic[0].title}
             </h1>
-            <h2 className="text-3xl ml-10  text-orange-900 mb-6 ">
+            <h2 className="text-3xl ml-10  text-black mb-6 ">
               -{topic[0].author}
             </h2>
 
@@ -117,11 +117,11 @@ const ViewBlogPage = () => {
                   height={800}
                   src={decodedImageUrl}
                   alt={topic[0].title}
-                  className="w-full2 h-auto rounded-lg shadow-md"
+                  className="md:w-full2 h-auto rounded-lg shadow-md"
                 />
               </div>
             )}
-            <div className=" text-lg text-orange-800 leading-relaxed">
+            <div className=" text-lg text-black leading-relaxed">
               <motion.p className="px-5">{parse(topic[0].content)}</motion.p>
             </div>
           </div>
