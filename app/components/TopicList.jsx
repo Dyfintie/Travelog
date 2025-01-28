@@ -33,6 +33,7 @@ export default function TopicsList() {
         setTopics(result);
         setIsLoading(false);
       } catch (error) {
+        console.log(error);
         setError(error.message);
         setIsLoading(false);
       }

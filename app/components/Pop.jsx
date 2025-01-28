@@ -30,7 +30,7 @@ const Pop = () => {
         setTopics(result);
         setIsLoading(false);
       } catch (error) {
-        
+        console.error("Error fetching data:", error);
         setError(error.message);
         setIsLoading(false);
       }

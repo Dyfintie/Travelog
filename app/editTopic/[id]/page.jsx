@@ -36,7 +36,7 @@ export default function EditTopic() {
           setNewContent(result[0].content || "");
         }
       } catch (error) {
-        
+        console.log(error);
       } finally {
         setIsLoading(false);
       }
