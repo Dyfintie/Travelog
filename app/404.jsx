@@ -14,9 +14,8 @@ const ErrorPage = () => {
           Oops! Looks like the page you were looking for doesn't exist.
         </p>
         <div className="mb-8">
-          {/* Dribbble Caveman 404 Not Found GIF */}
           <Image
-            src="https://media.giphy.com/media/xT9IgJt0xEN7Z6J5J6/giphy.gif" // URL of the Dribbble Caveman 404 Not Found GIF
+            src="/assests/404.gif"
             alt="Caveman 404"
             width={400}
             height={300}

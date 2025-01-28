@@ -30,7 +30,7 @@ export function LoginForm() {
       }
 
       const data = await response.json();
-      console.log("Login successful:", data);
+      
       Cookies.set("email", email, { expires: 1 });
       router.push("/blog");
     } catch (error) {

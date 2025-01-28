@@ -10,7 +10,7 @@ const Pop = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState("");
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
-  // console.log(apiUrl);
+  
   const [onHome,setOnhome]=useState(true);
   useEffect(() => {
     const fetchData = async () => {
@@ -30,7 +30,7 @@ const Pop = () => {
         setTopics(result);
         setIsLoading(false);
       } catch (error) {
-        console.error("Error fetching data:", error);
+        
         setError(error.message);
         setIsLoading(false);
       }

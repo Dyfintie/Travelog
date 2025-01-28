@@ -20,7 +20,7 @@ const ViewBlogPage = () => {
   const decodeBase64Image = (base64String) => {
     try {
       if (!base64String) {
-        console.error("Base64 string is empty or undefined.");
+        
         return null;
       }
 
@@ -38,7 +38,7 @@ const ViewBlogPage = () => {
       const blob = new Blob([bytes], { type: "image/png" });
       return URL.createObjectURL(blob);
     } catch (error) {
-      console.error("Error decoding Base64 image:", error.message);
+      
       return null;
     }
   };
@@ -58,7 +58,7 @@ const ViewBlogPage = () => {
           throw new Error("Failed to fetch topic");
         }
         const result = await response.json();
-        console.log(result);
+        
         setTopic(result);
         // Decode the image if file exists
         if (result[0].file) {

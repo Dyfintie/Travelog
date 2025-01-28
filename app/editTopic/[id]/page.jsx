@@ -36,7 +36,7 @@ export default function EditTopic() {
           setNewContent(result[0].content || "");
         }
       } catch (error) {
-        console.error("Error fetching topic:", error);
+        
       } finally {
         setIsLoading(false);
       }
@@ -47,7 +47,7 @@ export default function EditTopic() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(newContent);
+    
     setIsLoading(true);
 
     try {
@@ -63,7 +63,7 @@ export default function EditTopic() {
       }
       router.push("/blog");
     } catch (error) {
-      console.error("Error updating topic:", error);
+      
     } finally {
       setIsLoading(false);
     }
