@@ -9,11 +9,12 @@ export default function RemoveBtn({ id }) {
     const confirmed = confirm("Are you sure?");
     const apiUrl = process.env.NEXT_PUBLIC_API_URL;
     if (confirmed) {
-      const res = await fetch(`${apiUrl}/blogs/delete/${id}`, {
+      // const res = await fetch(`${apiUrl}/blogs/delete/${id}`, {
+      const res = await fetch(`/api/blog?id=${id}`, {
         method: "DELETE",
       });
-      router.push("/blog")
-      router.refresh();      
+      router.push("/blog");
+      router.refresh();
     }
   };
 

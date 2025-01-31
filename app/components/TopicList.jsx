@@ -18,11 +18,13 @@ export default function TopicsList() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`${apiUrl}/blogs`, {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
+        // const response = await fetch(`${apiUrl}/blogs`, {
+        const response = await fetch("/api/blog", {
+          cache: "no-store",
+          // method: "GET",
+          // headers: {
+          //   "Content-Type": "application/json",
+          // },
         });
 
         if (!response.ok) {
@@ -30,7 +32,7 @@ export default function TopicsList() {
         }
 
         const result = await response.json();
-        setTopics(result);
+        setTopics(result.blogs);
         setIsLoading(false);
       } catch (error) {
         console.log(error);
@@ -43,8 +45,9 @@ export default function TopicsList() {
   }, []);
 
   const filteredTopics = topics.filter((topic) => {
-    const matchesSearch =
-      topic.title.toLowerCase().includes(searchTerm.toLowerCase())
+    const matchesSearch = topic.title
+      .toLowerCase()
+      .includes(searchTerm.toLowerCase());
     //  || topic.content.toLowerCase().includes(searchTerm.toLowerCase());
     // const matchesLocation =
     //   selectedLocation === "" || topic.location === selectedLocation;
@@ -57,9 +60,7 @@ export default function TopicsList() {
   // );
 
   if (isLoading) {
-    return (
-      <Loading/>
-    );
+    return <Loading />;
   }
 
   if (error) {

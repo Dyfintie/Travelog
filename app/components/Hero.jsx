@@ -47,7 +47,6 @@ const Hero = () => {
         </motion.p>
       </motion.div>
         <MouseTrackingvideo
-
           src="/assests/trav.mp4"
           className="w-full md:w-1/2 mt-8 md:mt-0 sm:mr-5 relative rounded-lg overflow-hidden shadow-2xl "
         ></MouseTrackingvideo>

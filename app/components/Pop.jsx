@@ -10,34 +10,38 @@ const Pop = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState("");
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
-  
-  const [onHome,setOnhome]=useState(true);
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(`${apiUrl}/blogs`, {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
-        
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
 
-        const result = await response.json();
-        setTopics(result);
-        setIsLoading(false);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-        setError(error.message);
-        setIsLoading(false);
-      }
-    };
+  const [onHome, setOnhome] = useState(true);
+ useEffect(() => {
+   const fetchData = async () => {
+     try {
+       const response = await fetch("/api/blog", {
+         cache: "no-store",
+       });
 
-    fetchData();
-  }, []);
+       if (!response.ok) {
+         throw new Error("Network response was not ok");
+       }
+
+       const result = await response.json();
+       console.log("Fetched data:", result); // Debugging log
+
+       if (!Array.isArray(result.blogs)) {
+         throw new Error("Fetched data is not an array");
+       }
+
+       setTopics(result.blogs);
+     } catch (error) {
+       console.error("Error fetching data:", error);
+       setError(error.message);
+     } finally {
+       setIsLoading(false);
+     }
+   };
+
+   fetchData();
+ }, []);
+
 
   // Slice the first 3 topics
   const firstThreeTopics = topics.slice(0, 3);
@@ -70,7 +74,11 @@ const Pop = () => {
                 transition={{ duration: 0.5, delay: index * 0.3 }}
                 className="max-w-sm w-full justify-between gap-3 lg:w-1/3 xl:w-1/4"
               >
-                <AnimatedTopicCard key={topic._id} topic={topic} onHome={onHome} />
+                <AnimatedTopicCard
+                  key={topic._id}
+                  topic={topic}
+                  onHome={onHome}
+                />
               </motion.div>
             ))}
           </AnimatePresence>

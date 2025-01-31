@@ -22,18 +22,22 @@ export default function EditTopic() {
     const fetchData = async () => {
       setIsLoading(true);
       try {
-        const response = await fetch(`${apiUrl}/blogs/${id}`, {
+        // const response = await fetch(`${apiUrl}/blogs/${id}`, {
+        const response = await fetch(`/api/blog/${id}`, {
           method: "GET",
+          eaders: {
+            "Content-Type": "application/json",
+          },
         });
 
         if (!response.ok) {
           throw new Error("Failed to fetch topic");
         }
         const result = await response.json();
-        if (result && result[0]) {
-          setTopic(result[0]);
-          setNewTitle(result[0].title || "");
-          setNewContent(result[0].content || "");
+        if (result.blog) {
+          setTopic(result.blog);
+          setNewTitle(result.blog.title || "");
+          setNewContent(result.blog.content || "");
         }
       } catch (error) {
         console.log(error);
@@ -51,17 +55,21 @@ export default function EditTopic() {
     setIsLoading(true);
 
     try {
-      const res = await fetch(`${apiUrl}/blogs/${id}`, {
+      // const res = await fetch(`${apiUrl}/blogs/${id}`, {
+      // const res = await fetch(`${apiUrl}/blogs/${id}`, {
+      const response = await fetch(`/api/blog/${id}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ title: newTitle, content: newContent }),
       });
+      router.push("/blog");
+      router.refresh();
       if (!res.ok) {
         throw new Error("Failed to update topic");
       }
-      router.push("/blog");
+      
     } catch (error) {
       
     } finally {

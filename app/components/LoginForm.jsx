@@ -1,3 +1,4 @@
+"use client"
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Cookies from "js-cookie"; // Import js-cookie
@@ -17,7 +18,8 @@ export function LoginForm() {
     const loginData = { email, password };
 
     try {
-      const response = await fetch(`${apiUrl}/login`, {
+      // const response = await fetch(`${apiUrl}/login`, {
+      const response = await fetch("/api/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

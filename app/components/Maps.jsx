@@ -16,7 +16,7 @@ const Maps = () => {
     }
   return (
     <div className="font-work-sans flex-col justify-center rounded-lg shadow-md overflow-hidden bg-custom pb-5">
-        <h1 className=" flex justify-center  py-3 text-black-800 font-bold text-3xl" > Most Visted Place of The Year </h1>
+        <h1 className=" flex justify-center  py-3 text-black-800 font-bold text-3xl " > Most Visted Place of The Year </h1>
       <div className="flex rounded-lg justify-center px-4">
         <iframe
           className="w-11/12  h-screen rounded-lg  p-3"

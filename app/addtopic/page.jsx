@@ -43,7 +43,8 @@ export default function AddTopicWithImage() {
     formData.append("file", file);
 
     try {
-      const res = await fetch(`${apiUrl}/create-blog`, {
+      // const res = await fetch(`${apiUrl}/create-blog`, {
+      const res = await fetch("/api/blog", {
         method: "POST",
         body: formData,
       });
@@ -59,7 +60,6 @@ export default function AddTopicWithImage() {
     } finally {
       setIsLoading(false);
     }
-
   };
 
   return (

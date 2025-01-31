@@ -43,7 +43,7 @@ const Navbar = () => {
       setHidden(false);
     }
   });
-
+ 
   const toggleNavbar = () => setIsOpen(!isOpen);
 
   const handleLogout = () => {
@@ -65,13 +65,12 @@ const Navbar = () => {
       animate={hidden ? { y: -100 } : { y: 0 }}
       exit={{ y: -100 }}
       transition={{ duration: 0.7, ease: "easeInOut" }}
-      className="font-work-sans fixed top-0 left-0 right-0 z-50 bg-opacity-10  shadow-md bg-custom"
+      className="font-work-sans fixed top-0 left-0 right-0 z-50 bg-opacity-10 shadow-md bg-custom"
     >
       <div className="max-w-full mx-auto px-4 sm:px-6 lg:px-8 bg-custom">
         <div className="flex justify-between items-center py-4 md:space-x-10">
           <div className="flex justify-start lg:w-0 lg:flex-1">
             <Link href="/" className="flex items-center space-x-2">
-              {/* <Compass className="h-8 w-8 text-black" /> */}
               <Image src={plane} height={24} widht={24} alt="Travelog logo" />
               <span className="text-2xl font-extrabold text-black ">
                 Trave{" "}

@@ -47,7 +47,8 @@ const ViewBlogPage = () => {
     const fetchData = async () => {
       setIsLoading(true);
       try {
-        const response = await fetch(`${apiUrl}/blogs/${id}`, {
+        // const response = await fetch(`${apiUrl}/blogs/${id}`, {
+        const response = await fetch(`/api/blog/${id}`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -58,11 +59,11 @@ const ViewBlogPage = () => {
           throw new Error("Failed to fetch topic");
         }
         const result = await response.json();
-        console.log(result);
-        setTopic(result);
+        console.log(result.blog);
+        setTopic(result.blog);
         // Decode the image if file exists
-        if (result[0].file) {
-          const decodedUrl = decodeBase64Image(result[0].file);
+        if (result.blog) {
+          const decodedUrl = decodeBase64Image(result.blog.file);
           setDecodedImageUrl(decodedUrl);
         }
         // setTopic(result);
@@ -104,10 +105,10 @@ const ViewBlogPage = () => {
             </div>
 
             <h1 className="text-4xl ml-10 font-bold text-black mb-6">
-              {topic[0].title}
+              {topic.title}
             </h1>
             <h2 className="text-3xl ml-10  text-black mb-6 ">
-              -{topic[0].author}
+              -{topic.author}
             </h2>
 
             {decodedImageUrl && (
@@ -116,13 +117,13 @@ const ViewBlogPage = () => {
                   width={1500}
                   height={800}
                   src={decodedImageUrl}
-                  alt={topic[0].title}
+                  alt={topic.title}
                   className="md:w-full2 h-auto rounded-lg shadow-md"
                 />
               </div>
             )}
             <div className=" text-lg text-black leading-relaxed">
-              <motion.p className="px-5">{parse(topic[0].content)}</motion.p>
+              <motion.p className="px-5">{parse(topic.content)}</motion.p>
             </div>
           </div>
         </div>
