@@ -6,25 +6,19 @@ import { useRouter } from "next/navigation";
 import { Search, MapPin } from "lucide-react";
 import Image from "next/image";
 import Loading from "../Loading";
+import ErrorPage from "../404";
 export default function TopicsList() {
   const [topics, setTopics] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
-  // const [selectedLocation, setSelectedLocation] = useState("");
   const router = useRouter();
-  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // const response = await fetch(`${apiUrl}/blogs`, {
         const response = await fetch("/api/blog", {
           cache: "no-store",
-          // method: "GET",
-          // headers: {
-          //   "Content-Type": "application/json",
-          // },
         });
 
         if (!response.ok) {
@@ -48,28 +42,15 @@ export default function TopicsList() {
     const matchesSearch = topic.title
       .toLowerCase()
       .includes(searchTerm.toLowerCase());
-    //  || topic.content.toLowerCase().includes(searchTerm.toLowerCase());
-    // const matchesLocation =
-    //   selectedLocation === "" || topic.location === selectedLocation;
-    // return matchesSearch && matchesLocation;
     return matchesSearch;
   });
-
-  // const uniqueLocations = Array.from(
-  //   new Set(topics.map((topic) => topic.location))
-  // );
 
   if (isLoading) {
     return <Loading />;
   }
 
   if (error) {
-    return (
-      <div className="text-center text-red-600 mt-10 bg-custom min-h-screen py-8">
-        <h2 className="text-2xl font-bold mb-2">Error</h2>
-        <p>{error}</p>
-      </div>
-    );
+    return <ErrorPage />;
   }
 
   return (

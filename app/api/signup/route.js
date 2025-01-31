@@ -4,10 +4,10 @@ import { NextResponse } from "next/server";
 // import bcrypt from "bcrypt";
 // import crypto from "crypto";
 export async function POST(req) {
-  const { username, email, password } = await req.json();
   await connectMongoDB();
-  const exist = await userModel.find({ email: email });
-  if (!exist.empty()) {
+  const { username, email, password } = await req.json();
+  const exist = await userModel.findOne({email});
+  if (exist) {
     console.log(exist);
     return NextResponse.json(
       { message: "User already exists" },
@@ -19,11 +19,4 @@ export async function POST(req) {
     { message: "User created successfully" },
     { status: 200 }
   );
-  // bcrypt.genSalt(10, (err, hash)=>{
-  //     let user = await userModel.create({
-  //         username,
-  //         email,
-  //         password:hash,
-  //     })
-  // });
 }
