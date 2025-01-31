@@ -59,7 +59,7 @@ const ViewBlogPage = () => {
           throw new Error("Failed to fetch topic");
         }
         const result = await response.json();
-        console.log(result.blog);
+        // console.log(result.blog);
         setTopic(result.blog);
         // Decode the image if file exists
         if (result.blog) {

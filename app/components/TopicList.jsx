@@ -107,13 +107,21 @@ export default function TopicsList() {
           {/* <MapPin className="absolute left-3 top-3 text-gray-400" size={20} /> */}
         </div>
       </div>
-      <AnimatePresence>
-        <motion.div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {filteredTopics.map((topic) => (
-            <AnimatedTopicCard key={topic._id} topic={topic} />
+      <motion.div className="flex flex-wrap gap-6 justify-center max-w-full">
+        <AnimatePresence>
+          {filteredTopics.map((topic, index) => (
+            <motion.div
+              initial={{ y: -100, opacity: 0 }}
+              whileInView={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.3, duration: index * 0.3 }}
+              // className="grid gap-8 md:grid-cols-2 lg:grid-cols-3"
+              className="max-w-sm w-full justify-between gap-3 lg:w-1/3 xl:w-1/4"
+            >
+              <AnimatedTopicCard key={topic._id} topic={topic} />
+            </motion.div>
           ))}
-        </motion.div>
-      </AnimatePresence>
+        </AnimatePresence>
+      </motion.div>
       {filteredTopics.length === 0 && (
         <>
           <p className="text-center text-gray-600 mt-8 text-lg">

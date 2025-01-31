@@ -1,11 +1,13 @@
 "use client";
 import React from "react";
 import { ease, easeOut, motion } from "framer-motion";
-import MouseTrackingvideo from "./Mouse";
 const Hero = () => {
   return (
     <div className="bg-custom  h-screen w-full flex flex-col md:flex-row items-center justify-center p-5 gap-8">
       <motion.div
+        initial={{ y: -100, opacity: 0 }}
+        whileInView={{ y: 0, opacity: 1 }}
+        transition={{ delay: 0.5, duration: 0.8 }}
         className="w-full md:w-1/2 space-y-6 text-center md:text-left"
       >
         <motion.h1
@@ -46,10 +48,17 @@ const Hero = () => {
           and share stories that inspire your next adventure.
         </motion.p>
       </motion.div>
-        <MouseTrackingvideo
-          src="/assests/trav.mp4"
-          className="w-full md:w-1/2 mt-8 md:mt-0 sm:mr-5 relative rounded-lg overflow-hidden shadow-2xl "
-        ></MouseTrackingvideo>
+      <video
+        preload="auto"
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="w-full md:w-1/2 mt-8 md:mt-0 sm:mr-5 relative rounded-lg overflow-hidden shadow-2xl"
+      >
+        <source src="/assests/trav.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
     </div>
   );
 };

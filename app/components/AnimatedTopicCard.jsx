@@ -55,7 +55,7 @@ export default function AnimatedTopicCard({ topic,onHome }) {
     }
   }, [topic.file]);
 
-  // Check authentication
+  
   useEffect(() => {
     const email = Cookie.get("email");
     if (email === topic.email) {
@@ -69,6 +69,7 @@ export default function AnimatedTopicCard({ topic,onHome }) {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
       whileHover={{ scale: 1.05 }}
+      
       className="bg-white rounded-lg shadow-md overflow-hidden font-work-sans"
     >
       <div className="h-screen2">

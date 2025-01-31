@@ -65,7 +65,7 @@ export default function EditTopic() {
         body: JSON.stringify({ title: newTitle, content: newContent }),
       });
       router.push("/blog");
-      router.refresh();
+      // router.refresh();
       if (!res.ok) {
         throw new Error("Failed to update topic");
       }
