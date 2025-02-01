@@ -48,10 +48,7 @@ const Pop = () => {
   // if (isLoading) {
   //   return <Loading />;
   // }
-
-  if (error) {
-    return <ErrorPage />;
-  }
+  
 
   return (
     // export default function PopularPlaces({ firstThreeTopics }) {

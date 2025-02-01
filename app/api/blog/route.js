@@ -3,9 +3,17 @@ import blogModel from "../../../models/BlogModel";
 import userModel from "../../../models/UserModel";
 import { NextResponse } from "next/server";
 export async function GET() {
-  await connectMongoDB();
-  const blogs = await blogModel.find({});
-  return NextResponse.json({ blogs });
+  try {
+    await connectMongoDB();
+    const blogs = await blogModel.find({});
+    return NextResponse.json({ blogs });
+  } catch (error) {
+    console.error("Error fetching blog:", error);
+    return NextResponse.json(
+      { error: `Internal Server Error: ${error.message}` },
+      { status: 500 }
+    );
+  }
 }
 
 export async function POST(req) {
@@ -55,9 +63,19 @@ export async function POST(req) {
 }
 
 export async function DELETE(req) {
-  //   const { id } = params;
-  const id = req.nextUrl.searchParams.get("id");
-  await connectMongoDB();
-  await blogModel.findByIdAndDelete(id);
-  return NextResponse.json({ message: "Deletion successful" }, { status: 200 });
+  try {
+    const id = req.nextUrl.searchParams.get("id");
+    await connectMongoDB();
+    await blogModel.findByIdAndDelete(id);
+    return NextResponse.json(
+      { message: "Deletion successful" },
+      { status: 200 }
+    );
+  } catch (error) {
+    console.error("Error deleting blog:", error);
+    return NextResponse.json(
+      { error: `Internal Server Error: ${error.message}` },
+      { status: 500 }
+    );
+  }
 }
