@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { motion } from "framer-motion";
-import Editor from 'react-simple-wysiwyg';
+import Editor from "react-simple-wysiwyg";
 import Loading from "../../Loading.jsx";
 
 export default function EditTopic() {
@@ -14,18 +14,17 @@ export default function EditTopic() {
   const [newTitle, setNewTitle] = useState("");
   const [newContent, setNewContent] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const apiUrl = w;
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
   useEffect(() => {
     if (!id) return;
-
     const fetchData = async () => {
       setIsLoading(true);
       try {
         // const response = await fetch(`${apiUrl}/blogs/${id}`, {
         const response = await fetch(`/api/blog/${id}`, {
           method: "GET",
-          eaders: {
+          headers: {
             "Content-Type": "application/json",
           },
         });
@@ -47,11 +46,11 @@ export default function EditTopic() {
     };
 
     fetchData();
-  }, [id, apiUrl]);
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     setIsLoading(true);
 
     try {
@@ -64,14 +63,12 @@ export default function EditTopic() {
         },
         body: JSON.stringify({ title: newTitle, content: newContent }),
       });
-      router.push("/blog");
-      // router.refresh();
-      if (!res.ok) {
+      if (!response.ok) {
         throw new Error("Failed to update topic");
       }
-      
+      router.push("/blog");
+      router.refresh();
     } catch (error) {
-      
     } finally {
       setIsLoading(false);
     }
@@ -130,7 +127,10 @@ export default function EditTopic() {
                 Content
               </label>
               {
-                <Editor value={newContent} onChange={(e) => setNewContent(e.target.value)} />
+                <Editor
+                  value={newContent}
+                  onChange={(e) => setNewContent(e.target.value)}
+                />
               }
               {/* <textarea
                 id="content"

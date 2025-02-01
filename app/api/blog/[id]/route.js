@@ -4,7 +4,7 @@ import { NextResponse } from "next/server";
 
 export async function GET(req, { params }) {
   try {
-    const { id } = await params;
+    const { id } = params;
     await connectMongoDB();
     const blog = await blogModel.findOne({ _id: id });
     return NextResponse.json({ blog }, { status: 200 });
@@ -18,9 +18,9 @@ export async function GET(req, { params }) {
 }
 export async function PATCH(req, { params }) {
   try {
-    const { id } = await params;
-    const { title, content } = await req.json();
     await connectMongoDB();
+    const { id } = params;
+    const { title, content } = await req.json();
     await blogModel.findByIdAndUpdate(id, { title, content });
     return NextResponse.json(
       { message: "Updation Successful" },
