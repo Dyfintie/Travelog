@@ -14,7 +14,7 @@ export default function EditTopic() {
   const [newTitle, setNewTitle] = useState("");
   const [newContent, setNewContent] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+  const apiUrl = w;
 
   useEffect(() => {
     if (!id) return;

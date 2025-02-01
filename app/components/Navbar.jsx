@@ -26,7 +26,7 @@ const Navbar = () => {
   const { scrollY } = useScroll();
   const router = useRouter();
   const [isAuth, setAuth] = useState(false);
-
+  
   useEffect(() => {
     const email = Cookies.get("email");
     setEmail(email);
@@ -171,7 +171,7 @@ const Navbar = () => {
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
               {navItems.map((item) => (
                 <Link
-                  key={item.href}
+                  key={item.label}
                   href={item.href}
                   className="block px-3 py-2 rounded-md text-base font-medium text-black hover:bg-gray-300 transition duration-300 ease-in-out"
                   onClick={toggleNavbar}

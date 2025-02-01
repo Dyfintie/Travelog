@@ -7,7 +7,6 @@ import Loading from "../Loading";
 
 const Pop = () => {
   const [topics, setTopics] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState("");
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
@@ -24,7 +23,7 @@ const Pop = () => {
         }
 
         const result = await response.json();
-        console.log("Fetched data:", result); // Debugging log
+        // console.log("Fetched data:", result); // Debugging log
 
         if (!Array.isArray(result.blogs)) {
           throw new Error("Fetched data is not an array");
@@ -34,9 +33,10 @@ const Pop = () => {
       } catch (error) {
         console.error("Error fetching data:", error);
         setError(error.message);
-      } finally {
-        setIsLoading(false);
-      }
+      } 
+      // finally {
+      //   setIsLoading(false);
+      // }
     };
 
     fetchData();
@@ -45,9 +45,9 @@ const Pop = () => {
   // Slice the first 3 topics
   const firstThreeTopics = topics.slice(0, 3);
 
-  if (isLoading) {
-    return <Loading />;
-  }
+  // if (isLoading) {
+  //   return <Loading />;
+  // }
 
   if (error) {
     return <ErrorPage />;

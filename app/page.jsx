@@ -9,11 +9,13 @@ export default function Home() {
   return (
     <>
       <Navbar />
-      <section id="home" className="min-h-screen w-full bg-custom mt-5">
+      <section className="min-h-screen w-full bg-custom md:mt-5 mt-2">
         <Hero />
       </section>
+      <section className="w-full">
         <Pop />
-      <section id="home" className="min-h-screen w-full bg-custom ">
+      </section>
+      <section className="min-h-screen w-full bg-custom ">
         <Map />
       </section>
       <Footer />
